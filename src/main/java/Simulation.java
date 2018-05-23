@@ -62,7 +62,7 @@ public class Simulation {
         int rocketNumber = 0; // Keep track of the rocket number
 
         while (items.size() > 0) {
-            Rocket u1Rocket = new U1(); // Create the U1 rocket
+            U1 u1Rocket = new U1(); // Create the U1 rocket
             rocketNumber ++;
             System.out.println("u1Rocket " + rocketNumber);
 
@@ -125,7 +125,7 @@ public class Simulation {
 
         int rocketNumber = 0; // Keep track of the rocket number
         while (items.size() > 0) {
-            Rocket u2Rocket = new U2(); // Create the U2 rocket
+            U2 u2Rocket = new U2(); // Create the U2 rocket
             rocketNumber ++;
             System.out.println("u2Rocket " + rocketNumber);
 
@@ -236,7 +236,40 @@ public class Simulation {
         return sum;
     }
 
-
-
-
+    /**
+     *
+     * @param rockets
+     * @return
+     */
+    public int runSimulation(ArrayList<Rocket> rockets) {
+        if (rockets.get(0) instanceof U1) {
+            int totalBudgetForU1 = 0;
+            int i = 0;
+            while (i < rockets.size()) {
+                U1 u1 = (U1) rockets.get(i);
+                totalBudgetForU1 += u1.getRocketCost();
+                if (u1.launch()) {
+                    if (u1.land()) {
+                        i++;
+                    }
+                }
+            }
+            System.out.println("U1 launching budget: $" + totalBudgetForU1);
+            return totalBudgetForU1;
+        } else {
+            int totalBudgetForU2 = 0;
+            int i = 0;
+            while (i < rockets.size()) {
+                U2 u2 = (U2) rockets.get(i);
+                totalBudgetForU2 += u2.getRocketCost();
+                if (u2.launch()) {
+                    if (u2.land()) {
+                        i++;
+                    }
+                }
+            }
+            System.out.println("U2 launching budget: $" + totalBudgetForU2);
+            return totalBudgetForU2;
+        }
+    }
 }

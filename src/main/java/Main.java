@@ -23,8 +23,8 @@ public class Main {
         ArrayList<Rocket> u2Rockets4 = simulation4.loadU2(items4);
         System.out.println("The number of u2 rockets(phase-2): " + u2Rockets4.size());
 
-
-
+        System.out.println(simulation.runSimulation(u1Rockets));
+        System.out.println(simulation.runSimulation(u2Rockets));
     }
 
 

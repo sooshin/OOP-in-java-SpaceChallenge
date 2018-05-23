@@ -27,15 +27,22 @@ public class U1 extends Rocket {
     public boolean launch() {
         // Calculates the chance of exploding while launching
         double chanceOfLaunchExplosion
-                = LAUNCH_EXPLOSION_U1 * (this.getCurrentWeight() / this.getMaxWeight());
+                = LAUNCH_EXPLOSION_U1 * this.getCurrentWeight() / this.getMaxWeight();
 
-        System.out.println(1.0 - chanceOfLaunchExplosion);
-        System.out.println("Random number: " + new Random().nextDouble());
+        // The probability of a successful launch
+        double probabilityOfSuccessfulLaunch = 1.0 - chanceOfLaunchExplosion;
+
+        // new Random().nextDouble() returns uniformly distributed double value between 0.0 and 1.0.
+        double randomNumber = new Random().nextDouble();
 
         // Returns true or false based on a random number.
-        // 'new Random().nextDouble()' returns uniformly distributed double value between 0.0 and 1.0.
-        // '1.0 - chanceOfLaunchExplosion' is the probability of a successful launch
-        return new Random().nextDouble() < 1.0 - chanceOfLaunchExplosion;
+        if (randomNumber < probabilityOfSuccessfulLaunch) {
+            System.out.println("U-1 Rocket successfully launched!");
+            return true;
+        } else {
+            System.out.println("U-1 Rocket exploded while launching...");
+            return false;
+        }
     }
 
     /**
@@ -45,33 +52,21 @@ public class U1 extends Rocket {
     public boolean land() {
         // Calculate the chance of crashing while landing
         double chanceOfLandingCrash
-                = LANDING_CRASH_U1 * (this.getCurrentWeight() / this.getMaxWeight());
+                = LANDING_CRASH_U1 * this.getCurrentWeight() / this.getMaxWeight();
+
+        // The probability of a successful landing
+        double probabilityOfSuccessfulLanding = 1.0 - chanceOfLandingCrash;
+
+        // new Random.nextDouble() returns uniformly distributed double value between 0.0 and 1.0
+        double randomNumber = new Random().nextDouble();
 
         // Returns true or false based on a random number.
-        // 'new Random.nextDouble()' returns uniformly distributed double value between 0.0 and 1.0
-        // '1.0 - chanceOfLadingCrash' is the probability of a successful landing
-        return new Random().nextDouble() < 1.0 - chanceOfLandingCrash;
-    }
-
-    /**
-     * Print message to indicate the launching was successful or not
-     */
-    public void printLaunch() {
-        if (launch()){
-            System.out.println("U-1 Rocket successfully launched!");
-        } else {
-            System.out.println("U-1 Rocket exploded while launching...");
-        }
-    }
-
-    /**
-     * Print message to indicate the landing was successful or not
-     */
-    public void printLand() {
-        if (land()) {
+        if (randomNumber < probabilityOfSuccessfulLanding) {
             System.out.println("U-1 Rocket successfully landed!");
+            return true;
         } else {
             System.out.println("U-1 Rocket crashed while landing...");
+            return false;
         }
     }
 }
