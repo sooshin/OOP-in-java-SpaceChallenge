@@ -243,12 +243,12 @@ public class Simulation {
      */
     public int runSimulation(ArrayList<Rocket> rockets) {
         if (rockets.get(0) instanceof U1) {
-            int totalBudgetForU1 = 0;
+            int budgetForU1 = 0;
             int rocketNum = 0;
             int i = 0;
             while (i < rockets.size()) {
                 U1 u1 = (U1) rockets.get(i);
-                totalBudgetForU1 += u1.getRocketCost();
+                budgetForU1 += u1.getRocketCost();
                 rocketNum++;
                 System.out.println("Create U1 rocket # " + rocketNum);
                 if (u1.launch()) {
@@ -258,15 +258,14 @@ public class Simulation {
                 }
             }
             System.out.println("The number of U1 rockets : " + rocketNum);
-            System.out.println("U1 launching budget: $" + totalBudgetForU1);
-            return totalBudgetForU1;
+            return budgetForU1;
         } else {
-            int totalBudgetForU2 = 0;
+            int budgetForU2 = 0;
             int rocketNum = 0;
             int i = 0;
             while (i < rockets.size()) {
                 U2 u2 = (U2) rockets.get(i);
-                totalBudgetForU2 += u2.getRocketCost();
+                budgetForU2 += u2.getRocketCost();
                 rocketNum++;
                 System.out.println("Create U2 rocket # " + rocketNum);
                 if (u2.launch()) {
@@ -276,8 +275,7 @@ public class Simulation {
                 }
             }
             System.out.println("The number of U2 rockets : " + rocketNum);
-            System.out.println("U2 launching budget: $" + totalBudgetForU2);
-            return totalBudgetForU2;
+            return budgetForU2;
         }
     }
 }
