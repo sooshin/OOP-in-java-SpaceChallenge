@@ -40,7 +40,7 @@ public class U1 extends Rocket {
             System.out.println("U-1 Rocket successfully launched!");
             return true;
         } else {
-            System.out.println("U-1 Rocket exploded while launching...");
+            System.out.println("U-1 Rocket exploded while launching... Send that rocket again");
             return false;
         }
     }
@@ -65,7 +65,7 @@ public class U1 extends Rocket {
             System.out.println("U-1 Rocket successfully landed!");
             return true;
         } else {
-            System.out.println("U-1 Rocket crashed while landing...");
+            System.out.println("U-1 Rocket crashed while landing... Send that rocket again.");
             return false;
         }
     }
