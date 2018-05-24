@@ -237,44 +237,52 @@ public class Simulation {
     }
 
     /**
+     * This method calls launch and land methods for each of the rockets in the ArrayList.
+     * Every time a rocket explodes or crashes (i.e if launch or land method return false) it will
+     * have to send that rocket again.
      *
-     * @param rockets
-     * @return
+     * @param rockets ArrayList of Rockets returned from loadU1 method or loadU2 method
+     * @return the total budget required to send all rockets including the crashed ones
      */
     public int runSimulation(ArrayList<Rocket> rockets) {
+        // Check whether the rocket in the ArrayList of rockets is an instance of the U1 class
         if (rockets.get(0) instanceof U1) {
-            int budgetForU1 = 0;
-            int rocketNum = 0;
+            int budgetForU1 = 0; // Keep track of budget required to send each U1 rocket
+            int rocketNum = 0; // Keep track of the number of the rockets
             int i = 0;
             while (i < rockets.size()) {
-                U1 u1 = (U1) rockets.get(i);
-                budgetForU1 += u1.getRocketCost();
+                U1 u1 = (U1) rockets.get(i); // Create an U1 object
+                budgetForU1 += u1.getRocketCost(); // Update the current cost of the rocket
                 rocketNum++;
                 System.out.println("Create U1 rocket # " + rocketNum);
                 if (u1.launch()) {
                     if (u1.land()) {
+                        // Only update the value if the rocket launched and landed successfully
                         i++;
                     }
                 }
             }
             System.out.println("The number of U1 rockets : " + rocketNum);
+            // the total budget for U1 rockets
             return budgetForU1;
         } else {
-            int budgetForU2 = 0;
-            int rocketNum = 0;
+            int budgetForU2 = 0; // Keep track of budget required to send each U2 rocket
+            int rocketNum = 0; // Keep track of the number of the rockets
             int i = 0;
             while (i < rockets.size()) {
-                U2 u2 = (U2) rockets.get(i);
-                budgetForU2 += u2.getRocketCost();
+                U2 u2 = (U2) rockets.get(i); // Create an U2 object
+                budgetForU2 += u2.getRocketCost(); // Update the current cost of the rocket
                 rocketNum++;
                 System.out.println("Create U2 rocket # " + rocketNum);
                 if (u2.launch()) {
                     if (u2.land()) {
+                        // Only update the value if the rocket launched and landed successfully
                         i++;
                     }
                 }
             }
             System.out.println("The number of U2 rockets : " + rocketNum);
+            // the total budget for U2 rockets
             return budgetForU2;
         }
     }
